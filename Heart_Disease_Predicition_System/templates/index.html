@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            height: 80%;
+            overflow-y: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 8px 0 4px;
+            color: #555;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-container {
+            overflow-y: auto;
+            max-height: 70vh;
+            padding-right: 10px;
+        }
+
+        /* Mobile-specific styling */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            input, button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction Form</h2>
+        <form action="/predict" method="post">
+            <div class="form-container">
+                <label for="Age">Age:</label>
+                <input type="number" step="any" name="Age" required>
+                
+                <label for="Sex">Sex (1 = Male, 0 = Female):</label>
+                <input type="number" step="any" name="Sex" required>
+                
+                <label for="CP">Chest Pain Type (0 = No pain, 1 = Typical angina, 2 = Atypical angina, 3 = Non-anginal pain, 4 = Asymptomatic):</label>
+                <input type="number" step="any" name="CP" required>
+                
+                <label for="Trestbps">Resting Blood Pressure (Trestbps):</label>
+                <input type="number" step="any" name="Trestbps" required>
+                
+                <label for="Chol">Serum Cholesterol (Chol):</label>
+                <input type="number" step="any" name="Chol" required>
+                
+                <label for="FBS">Fasting Blood Sugar (FBS > 120 mg/dl, 1 = True, 0 = False):</label>
+                <input type="number" step="any" name="FBS" required>
+                
+                <label for="RestECG">Resting Electrocardiographic Results (0 = Normal, 1 = Having ST-T wave abnormality, 2 = Showing probable or definite left ventricular hypertrophy):</label>
+                <input type="number" step="any" name="RestECG" required>
+                
+                <label for="Thalach">Maximum Heart Rate Achieved (Thalach):</label>
+                <input type="number" step="any" name="Thalach" required>
+                
+                <label for="Exang">Exercise Induced Angina (1 = Yes, 0 = No):</label>
+                <input type="number" step="any" name="Exang" required>
+                
+                <label for="Oldpeak">Oldpeak (depression induced by exercise relative to rest):</label>
+                <input type="number" step="any" name="Oldpeak" required>
+                
+                <label for="Slope">Slope (Slope of the peak exercise ST segment):</label>
+                <input type="number" step="any" name="Slope" required>
+                
+                <label for="CA">Number of Major Vessels Colored by Fluoroscopy (CA):</label>
+                <input type="number" step="any" name="CA" required>
+                
+                <label for="Thal">Thalassemia (3 = normal, 6 = fixed defect, 7 = reversible defect):</label>
+                <input type="number" step="any" name="Thal" required>
+            </div>
+            
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
